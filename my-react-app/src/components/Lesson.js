@@ -5,12 +5,16 @@ class Lesson extends React.Component {
     super(props);
     this.state = {isModalOpen: false};
   }
-  
-  // handleClickLessonメソッドを定義してください
-  handleClickLesson(){
+
+  handleClickLesson() {
     this.setState({isModalOpen: true});
   }
   
+  // handleClickCloseメソッドを定義してください
+  handleClickClose() {
+    this.setState({isModalOpen: false});
+  }
+
   render() {
     let modal;
     if (this.state.isModalOpen) {
@@ -22,16 +26,20 @@ class Lesson extends React.Component {
               <h2>{this.props.name}</h2>
               <p>{this.props.introduction}</p>
             </div>
-            <button className='modal-close-btn'>
+            {/* onClickイベントを追加してください */}
+            <button
+              className='modal-close-btn'
+              onClick={() => {this.handleClickClose()}}
+            >
               とじる
             </button>
           </div>
         </div>
       );
     }
+
     return (
       <div className='lesson-card'>
-        {/* onClickイベントを追加してください */}
         <div
           className='lesson-item'
           onClick={() => {this.handleClickLesson()}}
